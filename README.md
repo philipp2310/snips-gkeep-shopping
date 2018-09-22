@@ -1,18 +1,18 @@
-# Generated Snips skill
+# SNIPS Google Keep Shopping List
 
-This is a generated python2 snips skill using the `snips-template` tool.
-It is compatible with the format expected by the `snips-skill-server`
+This skill for SNIPS takes two parameters for shopping Lists:
+The first one is your current list
+The second one is your personal sorting order - your main list can be sorted by that list. When you make a change to your current list, you can update the sorting order for future lists with just one command.
 
 ## Setup
 
-This skill requires some python dependencies to work properly, these are
-listed in the `requirements.txt`. You can use the `setup.sh` script to
-create a python virtualenv that will be recognized by the skill server
-and install them in it.
+Fill in the two shopping lists numbers:
+TODO
+Set up your (app) login data for google:
+TODO
 
-## Executables
+## Usage
 
-This dir contains a number of python executables named `action-*.py`.
-One such file is generated per intent supported. These are standalone
-executables and will perform a connection to MQTT and register on the
-given intent using the `hermes-python` helper lib.
+### Deutsch:
+Hey Snips, schreibe Mehl auf meine Einkaufsliste
+Hey Snips, bitte füge 3 Eier zum Einkaufszettel hinzu
