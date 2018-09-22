@@ -18,4 +18,5 @@ TODO
 
 ### Deutsch:
 Hey Snips, schreibe Mehl auf meine Einkaufsliste
+
 Hey Snips, bitte füge 3 Eier zum Einkaufszettel hinzu
