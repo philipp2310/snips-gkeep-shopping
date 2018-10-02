@@ -44,16 +44,23 @@ def action_wrapper(hermes, intentMessage, conf):
     if intentMessage.intent.intent_name == "Philipp:addItem_gkshop":
         hermes.publish_end_session(intentMessage.session_id, addItem(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == "Philipp:deleteItem_gkshop":
-        deleteItem(hermes,intentMessage,conf)
+        hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == "Philipp:sortList_gkshop":
-        sortList(hermes,intentMessage,conf)
+        hermes.publish_end_session(intentMessage.session_id, sortList(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == "Philipp:saveSort_gkshop":
-        saveSort(hermes,intentMessage,conf)
+        hermes.publish_end_session(intentMessage.session_id, saveSort(hermes,intentMessage,conf))
         
 def addItem(hermes,intentMessage,conf):
-    result_sentence = " wurde zur Einkaufsliste hinzugefügt!"
-    hermes.publish_end_session(intentMessage.session_id, result_sentence)
-    
+    return "wurde zur Einkaufsliste hinzugefügt!"
+
+def deleteItem(hermes,intentMessage,conf):
+    return "wurde von der Einkaufsliste gelöscht!"
+
+def sortList(hermes,intentMessage,conf):
+    return "Einkaufsliste wurde sortiert!"
+
+def saveSort(hermes,intentMessage,conf):
+    return "Sortierung wurde übernommen!"
 
 
 if __name__ == "__main__":
