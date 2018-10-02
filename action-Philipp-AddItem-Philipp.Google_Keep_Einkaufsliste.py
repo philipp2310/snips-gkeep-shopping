@@ -5,6 +5,8 @@ import ConfigParser
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 import io
+from snips_gkeep import Keep
+import sys
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
@@ -37,21 +39,25 @@ def action_wrapper(hermes, intentMessage, conf):
       To access global parameters use conf['global']['parameterName']. For end-user parameters use conf['secret']['parameterName'] 
      
     Refer to the documentation for further details. 
-    """ 
-    
-    Item = intentMessage.slots.Item.first().value
-    if len(intentMessage.slots.Menge) > 0:
-      Amount = intentMessage.slots.Menge.first().value
-    else:
-      Amount = ""
-    
-    result_sentence = str(Amount) + str(Item) + " wurde zur Einkaufsliste hinzugefugt!"
-    current_session_id = intentMessage.session_id
-    hermes.publish_end_session(current_session_id, result_sentence)
+    """
+    myKeep = Keep('wilmaflintstone.ai@gmail.com', 'acuqafojhoaktmsc')
+    if intentMessage.intent.intent_name == "Philipp:addItem_gkshop":
+        hermes.publish_end_session(intentMessage.session_id, addItem(hermes,intentMessage,conf))
+    elif intentMessage.intent.intent_name == "Philipp:deleteItem_gkshop":
+        deleteItem(hermes,intentMessage,conf)
+    elif intentMessage.intent.intent_name == "Philipp:sortList_gkshop":
+        sortList(hermes,intentMessage,conf)
+    elif intentMessage.intent.intent_name == "Philipp:saveSort_gkshop":
+        saveSort(hermes,intentMessage,conf)
+        
+def addItem(hermes,intentMessage,conf):
+    result_sentence = " wurde zur Einkaufsliste hinzugefügt!"
+    hermes.publish_end_session(intentMessage.session_id, result_sentence)
     
 
 
 if __name__ == "__main__":
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("Philipp:AddItem", subscribe_intent_callback) \
-         .start()
+        h.subscribe_intents(subscribe_intent_callback).start()
