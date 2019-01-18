@@ -1,4 +1,7 @@
-# SNIPS Google Keep Shopping List
+# SNIPS Google Keep Shopping List (DISCONTINUED)
+
+As there is still no Keep Api and the reveres engineered one is very unstable, I decided to use Bring! shopping list instead.
+Please see: https://github.com/philipp2310/snips-bring-shopping
 
 This skill for SNIPS takes two parameters for shopping Lists:
 
